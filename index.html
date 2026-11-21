@@ -17,6 +17,8 @@
       --surface: #fcf7f8;
       --surface-elevated: #f5e6ea;
       --border-tone: #e8d2d8;
+      --stripe-bank: #d8a7b8;
+      --stripe-wallet: #e6bfcc;
       --ink-soft-black: #4a4044;
       --ink-muted: #8b747d;
       --shadow-tone: 0 8px 24px rgba(175, 130, 145, 0.12);
@@ -99,44 +101,62 @@
       cursor: pointer;
     }
 
-    .channel-row {
+    .pay-slot {
+      position: relative;
       background-color: var(--bg-soft);
       border: 1px solid var(--border-tone);
       border-radius: 18px;
-      padding: 12px 14px;
+      padding: 13px 14px 13px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
       margin-bottom: 10px;
+      overflow: hidden;
     }
 
-    .channel-row:last-child {
+    .pay-slot:last-child {
       margin-bottom: 0;
     }
 
-    .channel-text {
-      font-size: 13.5px;
-      font-weight: 600;
-      color: var(--ink-soft-black);
-      word-break: break-word;
+    .pay-slot.bank-slot::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 5px;
+      background-color: var(--stripe-bank);
     }
 
-    .name-box-card {
-      text-align: center;
+    .pay-slot.wallet-slot::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 5px;
+      background-color: var(--stripe-wallet);
     }
 
-    .name-heading {
-      font-size: 12.5px;
-      font-weight: 600;
+    .pay-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+    }
+
+    .pay-tag {
+      font-size: 12px;
+      font-weight: 700;
       color: var(--ink-muted);
-      margin-bottom: 4px;
     }
 
-    .name-value {
-      font-size: 14.5px;
+    .pay-number {
+      font-size: 14px;
       font-weight: 700;
       color: var(--ink-soft-black);
+      word-break: break-word;
     }
 
     .plain-num,
@@ -158,6 +178,23 @@
       font-weight: 700;
       cursor: pointer;
       flex-shrink: 0;
+    }
+
+    .name-box-card {
+      text-align: center;
+    }
+
+    .name-heading {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+    }
+
+    .name-value {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--ink-soft-black);
     }
 
     .form-uniform-text {
@@ -284,20 +321,26 @@
       <button type="button" class="music-pill" id="musicBtn" onclick="toggleMusicManual()">play music</button>
     </div>
 
-    <!-- กล่องเลขบัญชีและวอเลต -->
+    <!-- กล่องบัญชีธนาคารและวอเลต แยกแถบสีชมพูอ่อน -->
     <div class="box-card">
-      <div class="channel-row">
-        <span class="channel-text"><span class="plain-num">762 226 8618</span>   𓈒  TTB</span>
+      <div class="pay-slot bank-slot">
+        <div class="pay-info">
+          <span class="pay-tag">TTB</span>
+          <span class="pay-number"><span class="plain-num">762 226 8618</span></span>
+        </div>
         <button type="button" class="copy-action" id="copyBankBtn" onclick="copyPlainValue('7622268618', 'copyBankBtn')">คัดลอก</button>
       </div>
 
-      <div class="channel-row">
-        <span class="channel-text">wallet   𓈒    <span class="plain-num">098 549 9304</span></span>
+      <div class="pay-slot wallet-slot">
+        <div class="pay-info">
+          <span class="pay-tag">wallet</span>
+          <span class="pay-number"><span class="plain-num">098 549 9304</span></span>
+        </div>
         <button type="button" class="copy-action" id="copyWalletBtn" onclick="copyPlainValue('0985499304', 'copyWalletBtn')">คัดลอก</button>
       </div>
     </div>
 
-    <!-- กล่องแยกสำหรับชื่อบัญชี (ไม่มีปุ่มคัดลอก) -->
+    <!-- กล่องแยกสำหรับชื่อบัญชี -->
     <div class="box-card name-box-card">
       <div class="name-heading">name</div>
       <div class="name-value">maliwan thipsang</div>
