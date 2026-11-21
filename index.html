@@ -115,25 +115,28 @@
       margin-bottom: 0;
     }
 
-    .channel-text-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      min-width: 0;
-    }
-
-    .channel-label {
-      font-size: 11.5px;
-      font-weight: 600;
-      color: var(--ink-muted);
-      text-transform: lowercase;
-    }
-
     .channel-text {
       font-size: 13.5px;
       font-weight: 600;
       color: var(--ink-soft-black);
       word-break: break-word;
+    }
+
+    .name-box-card {
+      text-align: center;
+    }
+
+    .name-heading {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+    }
+
+    .name-value {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--ink-soft-black);
     }
 
     .plain-num,
@@ -281,6 +284,7 @@
       <button type="button" class="music-pill" id="musicBtn" onclick="toggleMusicManual()">play music</button>
     </div>
 
+    <!-- กล่องเลขบัญชีและวอเลต -->
     <div class="box-card">
       <div class="channel-row">
         <span class="channel-text"><span class="plain-num">762 226 8618</span>   𓈒  TTB</span>
@@ -291,16 +295,15 @@
         <span class="channel-text">wallet   𓈒    <span class="plain-num">098 549 9304</span></span>
         <button type="button" class="copy-action" id="copyWalletBtn" onclick="copyPlainValue('0985499304', 'copyWalletBtn')">คัดลอก</button>
       </div>
-
-      <div class="channel-row">
-        <div class="channel-text-wrap">
-          <span class="channel-label">name</span>
-          <span class="channel-text">maliwan thipsang</span>
-        </div>
-        <button type="button" class="copy-action" id="copyNameBtn" onclick="copyPlainValue('maliwan thipsang', 'copyNameBtn')">คัดลอก</button>
-      </div>
     </div>
 
+    <!-- กล่องแยกสำหรับชื่อบัญชี (ไม่มีปุ่มคัดลอก) -->
+    <div class="box-card name-box-card">
+      <div class="name-heading">name</div>
+      <div class="name-value">maliwan thipsang</div>
+    </div>
+
+    <!-- กล่องสร้างคิวอาร์โค้ดตามยอดเงิน -->
     <div class="box-card">
       <div class="form-uniform-text">หากต้องการคิวอาร์โค๊ดสแกนให้ลูกค้าเลื่อนขึ้น แล้วกรอกจำนวนเงินที่จะโอนได้เลยคับ แล้วรอคิวอาร์ขึ้น 🫶🏻</div>
 
