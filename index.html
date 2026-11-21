@@ -87,13 +87,6 @@
       margin-top: 10px;
     }
 
-    .account-holder {
-      font-size: 13.5px;
-      font-weight: 600;
-      color: var(--ink-muted);
-      margin-top: 4px;
-    }
-
     .music-pill {
       margin-top: 10px;
       padding: 6px 16px;
@@ -120,6 +113,20 @@
 
     .channel-row:last-child {
       margin-bottom: 0;
+    }
+
+    .channel-text-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .channel-label {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      text-transform: lowercase;
     }
 
     .channel-text {
@@ -271,7 +278,6 @@
         alt="Chamoix Profile"
       >
       <div class="brand-name">Chamoix</div>
-      <div class="account-holder">Maliwan thipsang</div>
       <button type="button" class="music-pill" id="musicBtn" onclick="toggleMusicManual()">play music</button>
     </div>
 
@@ -284,6 +290,14 @@
       <div class="channel-row">
         <span class="channel-text">wallet   𓈒    <span class="plain-num">098 549 9304</span></span>
         <button type="button" class="copy-action" id="copyWalletBtn" onclick="copyPlainValue('0985499304', 'copyWalletBtn')">คัดลอก</button>
+      </div>
+
+      <div class="channel-row">
+        <div class="channel-text-wrap">
+          <span class="channel-label">name</span>
+          <span class="channel-text">maliwan thipsang</span>
+        </div>
+        <button type="button" class="copy-action" id="copyNameBtn" onclick="copyPlainValue('maliwan thipsang', 'copyNameBtn')">คัดลอก</button>
       </div>
     </div>
 
