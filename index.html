@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Chamoix</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500;600&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-base: #fbf2f4;
+      --bg-soft: #f8ecee;
+      --surface: #fdf7f8;
+      --surface-elevated: #f6e7eb;
+      --border-tone: #ebd4da;
+      --accent-soft: #deb4c2;
+      --accent-mid: #c894a6;
+      --text-primary: #8e5f70;
+      --text-secondary: #a87d8d;
+      --shadow-tone: 0 8px 24px rgba(185, 135, 152, 0.14);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Quicksand', 'Mitr', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .page-wrap {
+      max-width: 440px;
+      margin: 0 auto;
+      padding: 16px 14px 56px;
+    }
+
+    .box-card {
+      background-color: var(--surface);
+      border: 1.5px solid var(--border-tone);
+      border-radius: 24px;
+      padding: 16px;
+      box-shadow: var(--shadow-tone);
+      margin-bottom: 14px;
+    }
+
+    .profile-card {
+      text-align: center;
+      padding-bottom: 20px;
+    }
+
+    .banner-photo {
+      width: 100%;
+      height: 136px;
+      object-fit: cover;
+      border-radius: 18px;
+      display: block;
+      margin-bottom: -44px;
+      border: 2px solid var(--bg-base);
+      background-color: var(--bg-soft);
+    }
+
+    .avatar-photo {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--bg-base);
+      background-color: var(--bg-soft);
+      position: relative;
+      z-index: 2;
+      box-shadow: var(--shadow-tone);
+    }
+
+    .brand-name {
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-top: 10px;
+    }
+
+    .account-holder {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    .music-pill {
+      margin-top: 10px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border-tone);
+      background-color: var(--bg-soft);
+      color: var(--text-primary);
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .channel-row {
+      background-color: var(--bg-soft);
+      border: 1px solid var(--border-tone);
+      border-radius: 18px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .channel-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .channel-text {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+      word-break: break-word;
+    }
+
+    .copy-action {
+      padding: 7px 13px;
+      border-radius: 14px;
+      border: 1px solid var(--border-tone);
+      background-color: var(--surface-elevated);
+      color: var(--text-primary);
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .form-uniform-text {
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--text-primary);
+      text-align: center;
+      margin-bottom: 12px;
+      white-space: pre-line;
+    }
+
+    .amount-input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1.5px solid var(--border-tone);
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      font-size: 18px;
+      font-weight: 700;
+      text-align: center;
+      outline: none;
+      margin-bottom: 10px;
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .quick-btn {
+      padding: 9px 6px;
+      border-radius: 14px;
+      border: 1px solid var(--border-tone);
+      background-color: var(--bg-soft);
+      color: var(--text-primary);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .qr-panel {
+      background-color: var(--bg-soft);
+      border: 1.5px solid var(--border-tone);
+      border-radius: 20px;
+      padding: 16px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .qr-frame {
+      width: 210px;
+      height: 210px;
+      background-color: var(--bg-base);
+      border: 1px solid var(--border-tone);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .qr-frame img {
+      width: 196px;
+      height: 196px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .qr-empty-note {
+      font-size: 13px;
+      color: var(--text-secondary);
+      padding: 0 12px;
+      line-height: 1.5;
+    }
+
+    .qr-meta {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .qr-amount-label {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+  </style>
+</head>
+<body>
+
+  <audio
+    id="bgMusic"
+    loop
+    autoplay
+    preload="auto"
+    src="https://file.garden/asG8Gt-rqWIpi3II/%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%81%E0%B8%B1%E0%B8%99%20Cover%20by%20Gemini%2C%20Fourth%20%E0%B9%81%E0%B8%9F%E0%B8%99%E0%B8%9C%E0%B8%A1%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%20My%20School%20President.mp3"
+  ></audio>
+
+  <div class="page-wrap">
+    <div class="box-card profile-card">
+      <img
+        class="banner-photo"
+        src="https://files.catbox.moe/93ynt8.gif"
+        alt="Chamoix Banner"
+      >
+      <img
+        class="avatar-photo"
+        src="https://files.catbox.moe/k2if1a.jpeg"
+        alt="Chamoix Profile"
+      >
+      <div class="brand-name">Chamoix</div>
+      <div class="account-holder">Maliwan thipsang</div>
+      <button type="button" class="music-pill" id="musicBtn" onclick="toggleMusicManual()">play music</button>
+    </div>
+
+    <div class="box-card">
+      <div class="channel-row">
+        <span class="channel-text">762 226 8618   𓈒  TTB</span>
+        <button type="button" class="copy-action" id="copyBankBtn" onclick="copyPlainValue('7622268618', 'copyBankBtn')">คัดลอก</button>
+      </div>
+
+      <div class="channel-row">
+        <span class="channel-text">wallet   𓈒    098 549 9304</span>
+        <button type="button" class="copy-action" id="copyWalletBtn" onclick="copyPlainValue('0985499304', 'copyWalletBtn')">คัดลอก</button>
+      </div>
+    </div>
+
+    <div class="box-card">
+      <div class="form-uniform-text">หากต้องการคิวอาร์โค๊ดสแกนให้ลูกค้าเลื่อนขึ้น แล้วกรอกจำนวนเงินที่จะโอนได้เลยคับ แล้วรอคิวอาร์ขึ้น 🫶🏻</div>
+
+      <input
+        type="number"
+        id="amountInput"
+        class="amount-input"
+        placeholder="0.00"
+        min="0.01"
+        step="0.01"
+        inputmode="decimal"
+        oninput="updateQrCode()"
+      >
+
+      <div class="quick-grid">
+        <button type="button" class="quick-btn" onclick="addAmount(50)">+50</button>
+        <button type="button" class="quick-btn" onclick="addAmount(100)">+100</button>
+        <button type="button" class="quick-btn" onclick="addAmount(300)">+300</button>
+        <button type="button" class="quick-btn" onclick="addAmount(500)">+500</button>
+        <button type="button" class="quick-btn" onclick="addAmount(1000)">+1000</button>
+        <button type="button" class="quick-btn" onclick="clearAmount()">ล้าง</button>
+      </div>
+
+      <div class="qr-panel">
+        <div class="qr-frame" id="qrFrame">
+          <div class="qr-empty-note" id="qrPlaceholder">กรอกจำนวนเงินเพื่อสร้างคิวอาร์โค้ด</div>
+          <img id="qrImage" alt="PromptPay QR Code" style="display: none;">
+        </div>
+        <div class="qr-amount-label" id="qrAmountText">0.00 บาท</div>
+        <div class="qr-meta">พร้อมเพย์ 0902673267</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const PROMPTPAY_ID = "0902673267";
+
+    // แตะตรงไหนบนหน้าจอเพลงจะติดเล่นทันที
+    const audioPlayer = document.getElementById("bgMusic");
+    const musicBtn = document.getElementById("musicBtn");
+    let audioUnlocked = false;
+
+    function syncMusicLabel() {
+      musicBtn.textContent = audioPlayer.paused ? "play music" : "playing music";
+    }
+
+    function unlockAndPlayMusic() {
+      if (!audioPlayer) return;
+      if (audioPlayer.paused) {
+        audioPlayer.play().then(() => {
+          audioUnlocked = true;
+          syncMusicLabel();
+        }).catch(() => {});
+      } else {
+        audioUnlocked = true;
+        syncMusicLabel();
+      }
+    }
+
+    function toggleMusicManual() {
+      if (audioPlayer.paused) {
+        audioPlayer.play().then(() => {
+          audioUnlocked = true;
+          syncMusicLabel();
+        }).catch(() => {});
+      } else {
+        audioPlayer.pause();
+        syncMusicLabel();
+      }
+    }
+
+    ["pointerdown", "touchstart", "click", "scroll", "keydown"].forEach(evtName => {
+      document.addEventListener(evtName, () => {
+        if (!audioUnlocked) {
+          unlockAndPlayMusic();
+        }
+      }, { passive: true });
+    });
+
+    window.addEventListener("DOMContentLoaded", () => {
+      unlockAndPlayMusic();
+      syncMusicLabel();
+    });
+
+    // คัดลอกเฉพาะเลขบัญชี หรือเบอร์วอเลตล้วนๆ
+    function copyPlainValue(rawText, btnId) {
+      const cleanOnly = String(rawText).trim();
+      const btn = document.getElementById(btnId);
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(cleanOnly).catch(() => fallbackCopy(cleanOnly));
+      } else {
+        fallbackCopy(cleanOnly);
+      }
+
+      if (btn) {
+        const prev = btn.textContent;
+        btn.textContent = "คัดลอกแล้ว";
+        setTimeout(() => {
+          btn.textContent = prev;
+        }, 1200);
+      }
+    }
+
+    function fallbackCopy(text) {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try {
+        document.execCommand("copy");
+      } catch (e) {}
+      document.body.removeChild(ta);
+    }
+
+    // สร้าง PromptPay EMVCo Payload + CRC16
+    function formatTlv(tag, value) {
+      const len = String(value.length).padStart(2, "0");
+      return tag + len + value;
+    }
+
+    function formatPromptPayTarget(id) {
+      const digits = String(id).replace(/\D/g, "");
+      if (digits.length === 13) {
+        return formatTlv("02", digits);
+      }
+      const normalizedPhone = digits.startsWith("0") ? "0066" + digits.slice(1) : digits;
+      return formatTlv("01", normalizedPhone);
+    }
+
+    function calcCrc16(payload) {
+      let crc = 0xffff;
+      for (let i = 0; i < payload.length; i++) {
+        crc ^= payload.charCodeAt(i) << 8;
+        for (let bit = 0; bit < 8; bit++) {
+          if ((crc & 0x8000) !== 0) {
+            crc = ((crc << 1) ^ 0x1021) & 0xffff;
+          } else {
+            crc = (crc << 1) & 0xffff;
+          }
+        }
+      }
+      return crc.toString(16).toUpperCase().padStart(4, "0");
+    }
+
+    function buildPromptPayPayload(targetId, amountNumber) {
+      const formattedAmt = Number(amountNumber).toFixed(2);
+      const isStatic = Number(amountNumber) <= 0;
+
+      const versionTag = formatTlv("00", "01");
+      const initiationTag = formatTlv("01", isStatic ? "11" : "12");
+      const merchantAccountInfo = formatTlv(
+        "29",
+        formatTlv("00", "A000000677010111") + formatPromptPayTarget(targetId)
+      );
+      const currencyTag = formatTlv("53", "764");
+      const amountTag = isStatic ? "" : formatTlv("54", formattedAmt);
+      const countryTag = formatTlv("58", "TH");
+
+      const withoutCrc =
+        versionTag +
+        initiationTag +
+        merchantAccountInfo +
+        currencyTag +
+        amountTag +
+        countryTag +
+        "6304";
+
+      return withoutCrc + calcCrc16(withoutCrc);
+    }
+
+    function addAmount(plusVal) {
+      const input = document.getElementById("amountInput");
+      const cur = parseFloat(input.value) || 0;
+      const next = Math.max(0, cur + plusVal);
+      input.value = Number.isInteger(next) ? String(next) : next.toFixed(2);
+      updateQrCode();
+    }
+
+    function clearAmount() {
+      document.getElementById("amountInput").value = "";
+      updateQrCode();
+    }
+
+    function updateQrCode() {
+      const input = document.getElementById("amountInput");
+      const amount = parseFloat(input.value);
+      const qrImg = document.getElementById("qrImage");
+      const placeholder = document.getElementById("qrPlaceholder");
+      const amountLabel = document.getElementById("qrAmountText");
+
+      if (!amount || isNaN(amount) || amount <= 0) {
+        qrImg.style.display = "none";
+        qrImg.removeAttribute("src");
+        placeholder.style.display = "block";
+        amountLabel.textContent = "0.00 บาท";
+        return;
+      }
+
+      amountLabel.textContent =
+        amount.toLocaleString("th-TH", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }) + " บาท";
+
+      const payload = buildPromptPayPayload(PROMPTPAY_ID, amount);
+      const qrApiUrl =
+        "https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=6&data=" +
+        encodeURIComponent(payload);
+
+      placeholder.style.display = "none";
+      qrImg.style.display = "block";
+      qrImg.src = qrApiUrl;
+    }
+  </script>
+</body>
+</html>
