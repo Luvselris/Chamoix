@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
   <title>Chamoix</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,16 +12,14 @@
 
   <style>
     :root {
-      --bg-base: #fbf2f4;
-      --bg-soft: #f8ecee;
-      --surface: #fdf7f8;
-      --surface-elevated: #f6e7eb;
-      --border-tone: #ebd4da;
-      --accent-soft: #deb4c2;
-      --accent-mid: #c894a6;
-      --text-primary: #8e5f70;
-      --text-secondary: #a87d8d;
-      --shadow-tone: 0 8px 24px rgba(185, 135, 152, 0.14);
+      --bg-base: #faf2f4;
+      --bg-soft: #f7ecee;
+      --surface: #fcf7f8;
+      --surface-elevated: #f5e6ea;
+      --border-tone: #e8d2d8;
+      --ink-soft-black: #4a4044;
+      --ink-muted: #8b747d;
+      --shadow-tone: 0 8px 24px rgba(175, 130, 145, 0.12);
     }
 
     *, *::before, *::after {
@@ -33,7 +32,7 @@
 
     body {
       background-color: var(--bg-base);
-      color: var(--text-primary);
+      color: var(--ink-soft-black);
       min-height: 100vh;
       overflow-x: hidden;
     }
@@ -84,24 +83,24 @@
     .brand-name {
       font-size: 21px;
       font-weight: 700;
-      color: var(--text-primary);
+      color: var(--ink-soft-black);
       margin-top: 10px;
     }
 
     .account-holder {
       font-size: 13.5px;
       font-weight: 600;
-      color: var(--text-secondary);
+      color: var(--ink-muted);
       margin-top: 4px;
     }
 
     .music-pill {
       margin-top: 10px;
-      padding: 6px 14px;
+      padding: 6px 16px;
       border-radius: 999px;
       border: 1px solid var(--border-tone);
       background-color: var(--bg-soft);
-      color: var(--text-primary);
+      color: var(--ink-muted);
       font-size: 12.5px;
       font-weight: 600;
       cursor: pointer;
@@ -126,16 +125,25 @@
     .channel-text {
       font-size: 13.5px;
       font-weight: 600;
-      color: var(--text-primary);
+      color: var(--ink-soft-black);
       word-break: break-word;
     }
 
+    .plain-num,
+    .plain-num a,
+    a[href^="tel:"] {
+      color: var(--ink-soft-black) !important;
+      text-decoration: none !important;
+      -webkit-text-fill-color: var(--ink-soft-black) !important;
+      pointer-events: none;
+    }
+
     .copy-action {
-      padding: 7px 13px;
+      padding: 7px 14px;
       border-radius: 14px;
       border: 1px solid var(--border-tone);
       background-color: var(--surface-elevated);
-      color: var(--text-primary);
+      color: var(--ink-soft-black);
       font-size: 12.5px;
       font-weight: 700;
       cursor: pointer;
@@ -145,7 +153,7 @@
     .form-uniform-text {
       font-size: 13.5px;
       line-height: 1.65;
-      color: var(--text-primary);
+      color: var(--ink-soft-black);
       text-align: center;
       margin-bottom: 12px;
       white-space: pre-line;
@@ -157,12 +165,18 @@
       border-radius: 16px;
       border: 1.5px solid var(--border-tone);
       background-color: var(--bg-base);
-      color: var(--text-primary);
+      color: var(--ink-soft-black);
+      -webkit-text-fill-color: var(--ink-soft-black);
       font-size: 18px;
       font-weight: 700;
       text-align: center;
       outline: none;
       margin-bottom: 10px;
+    }
+
+    .amount-input::placeholder {
+      color: var(--ink-muted);
+      -webkit-text-fill-color: var(--ink-muted);
     }
 
     .quick-grid {
@@ -177,7 +191,7 @@
       border-radius: 14px;
       border: 1px solid var(--border-tone);
       background-color: var(--bg-soft);
-      color: var(--text-primary);
+      color: var(--ink-soft-black);
       font-size: 13px;
       font-weight: 700;
       cursor: pointer;
@@ -216,7 +230,7 @@
 
     .qr-empty-note {
       font-size: 13px;
-      color: var(--text-secondary);
+      color: var(--ink-muted);
       padding: 0 12px;
       line-height: 1.5;
     }
@@ -224,13 +238,13 @@
     .qr-meta {
       font-size: 13px;
       font-weight: 600;
-      color: var(--text-primary);
+      color: var(--ink-soft-black);
     }
 
     .qr-amount-label {
       font-size: 15px;
       font-weight: 700;
-      color: var(--text-primary);
+      color: var(--ink-soft-black);
     }
   </style>
 </head>
@@ -263,12 +277,12 @@
 
     <div class="box-card">
       <div class="channel-row">
-        <span class="channel-text">762 226 8618   𓈒  TTB</span>
+        <span class="channel-text"><span class="plain-num">762 226 8618</span>   𓈒  TTB</span>
         <button type="button" class="copy-action" id="copyBankBtn" onclick="copyPlainValue('7622268618', 'copyBankBtn')">คัดลอก</button>
       </div>
 
       <div class="channel-row">
-        <span class="channel-text">wallet   𓈒    098 549 9304</span>
+        <span class="channel-text">wallet   𓈒    <span class="plain-num">098 549 9304</span></span>
         <button type="button" class="copy-action" id="copyWalletBtn" onclick="copyPlainValue('0985499304', 'copyWalletBtn')">คัดลอก</button>
       </div>
     </div>
@@ -301,8 +315,8 @@
           <div class="qr-empty-note" id="qrPlaceholder">กรอกจำนวนเงินเพื่อสร้างคิวอาร์โค้ด</div>
           <img id="qrImage" alt="PromptPay QR Code" style="display: none;">
         </div>
-        <div class="qr-amount-label" id="qrAmountText">0.00 บาท</div>
-        <div class="qr-meta">พร้อมเพย์ 0902673267</div>
+        <div class="qr-amount-label" id="qrAmountText"><span class="plain-num">0.00</span> บาท</div>
+        <div class="qr-meta">พร้อมเพย์ <span class="plain-num">0902673267</span></div>
       </div>
     </div>
   </div>
@@ -310,7 +324,6 @@
   <script>
     const PROMPTPAY_ID = "0902673267";
 
-    // แตะตรงไหนบนหน้าจอเพลงจะติดเล่นทันที
     const audioPlayer = document.getElementById("bgMusic");
     const musicBtn = document.getElementById("musicBtn");
     let audioUnlocked = false;
@@ -357,7 +370,6 @@
       syncMusicLabel();
     });
 
-    // คัดลอกเฉพาะเลขบัญชี หรือเบอร์วอเลตล้วนๆ
     function copyPlainValue(rawText, btnId) {
       const cleanOnly = String(rawText).trim();
       const btn = document.getElementById(btnId);
@@ -391,7 +403,6 @@
       document.body.removeChild(ta);
     }
 
-    // สร้าง PromptPay EMVCo Payload + CRC16
     function formatTlv(tag, value) {
       const len = String(value.length).padStart(2, "0");
       return tag + len + value;
@@ -471,15 +482,15 @@
         qrImg.style.display = "none";
         qrImg.removeAttribute("src");
         placeholder.style.display = "block";
-        amountLabel.textContent = "0.00 บาท";
+        amountLabel.innerHTML = `<span class="plain-num">0.00</span> บาท`;
         return;
       }
 
-      amountLabel.textContent =
-        amount.toLocaleString("th-TH", {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2
-        }) + " บาท";
+      const formatted = amount.toLocaleString("th-TH", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+      amountLabel.innerHTML = `<span class="plain-num">${formatted}</span> บาท`;
 
       const payload = buildPromptPayPayload(PROMPTPAY_ID, amount);
       const qrApiUrl =
