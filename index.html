@@ -142,18 +142,31 @@
     .pay-info {
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 4px;
       min-width: 0;
     }
 
+    .pay-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pay-icon {
+      width: 16px;
+      height: 16px;
+      color: var(--ink-muted);
+      flex-shrink: 0;
+    }
+
     .pay-tag {
-      font-size: 12px;
+      font-size: 12.5px;
       font-weight: 700;
       color: var(--ink-muted);
     }
 
     .pay-number {
-      font-size: 14px;
+      font-size: 14.5px;
       font-weight: 700;
       color: var(--ink-soft-black);
       word-break: break-word;
@@ -321,11 +334,23 @@
       <button type="button" class="music-pill" id="musicBtn" onclick="toggleMusicManual()">play music</button>
     </div>
 
-    <!-- กล่องบัญชีธนาคารและวอเลต แยกแถบสีชมพูอ่อน -->
+    <!-- กล่องบัญชีธนาคารและวอเลต พร้อมไอคอนธนาคารและกระเป๋าตังวอเลต -->
     <div class="box-card">
       <div class="pay-slot bank-slot">
         <div class="pay-info">
-          <span class="pay-tag">TTB</span>
+          <div class="pay-header">
+            <svg class="pay-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 10h18"></path>
+              <path d="M12 3L2 9h20L12 3z"></path>
+              <path d="M5 10v8"></path>
+              <path d="M9.5 10v8"></path>
+              <path d="M14.5 10v8"></path>
+              <path d="M19 10v8"></path>
+              <path d="M2 18h20"></path>
+              <path d="M2 21h20"></path>
+            </svg>
+            <span class="pay-tag">bank ttb</span>
+          </div>
           <span class="pay-number"><span class="plain-num">762 226 8618</span></span>
         </div>
         <button type="button" class="copy-action" id="copyBankBtn" onclick="copyPlainValue('7622268618', 'copyBankBtn')">คัดลอก</button>
@@ -333,7 +358,14 @@
 
       <div class="pay-slot wallet-slot">
         <div class="pay-info">
-          <span class="pay-tag">wallet</span>
+          <div class="pay-header">
+            <svg class="pay-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"></path>
+              <path d="M16 3H5a2 2 0 0 0-2 2v2"></path>
+              <circle cx="17" cy="13.5" r="1.2" fill="currentColor"></circle>
+            </svg>
+            <span class="pay-tag">TrueMoney</span>
+          </div>
           <span class="pay-number"><span class="plain-num">098 549 9304</span></span>
         </div>
         <button type="button" class="copy-action" id="copyWalletBtn" onclick="copyPlainValue('0985499304', 'copyWalletBtn')">คัดลอก</button>
